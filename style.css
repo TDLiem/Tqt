@@ -1,0 +1,44 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding-top: 20%;
+    background: linear-gradient(to right, #ffafbd, #ffc3a0);
+    color: #5d3a3a;
+}
+#question {
+    font-size: 24px;
+    margin-bottom: 30px;
+    display: none; /* Hidden at first */
+}
+button {
+    background-color: #ff6b88;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+#our-photo {
+    width: 200px;          
+    height: 200px;          
+    border-radius: 50%;     
+    object-fit: cover;      
+    border: 5px solid white; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+    margin: 20px auto;     
+}
+
+#musicToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.8);
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+}
