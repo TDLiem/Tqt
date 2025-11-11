@@ -132,7 +132,8 @@
 
             if (userInput === correctPassword) {
                 // Password correct - redirect to the main proposal page
-                window.location.href = "proposal.html";
+                    const token = Date.now();
+                    window.location.href = `proposal.html?token=${token}&auth=true`;
             } else {
                 // Password wrong - show error
                 errorMessage.style.display = 'block';
