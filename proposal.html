@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For My Love</title>
+    <link rel="stylesheet" href="proposalStyle.css">
+    
+    <!-- You can still have some inline styles if needed, but now most are in the CSS file -->
+    <style>
+    </style>
+</head>
+<body>
+     <audio id="backgroundMusic" loop>
+        <source src="khobau.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button id="musicToggle" onclick="toggleMusic()">🎵</button>
+
+
+    <img id="our-photo" src="shindo.png" alt="Our Happy Photo">
+    <h1>Hello, <span id="name">[Your Lover's Name]</span>!</h1>
+    <p>From the moment I met you, my life changed forever.</p>
+    <p>You make every day brighter.</p>
+    <button onclick="showQuestion()">Click here for a very important question</button>
+
+    <div id="question">
+        <h2>Will you make me the happiest person in the world?</h2>
+        <h2>Will you marry me?</h2>
+        <button onclick="answer(true)">YES!</button>
+        <button onclick="answer(false)">... (Just kidding, it's YES!)</button>
+    </div>
+
+    <script>
+        const music = document.getElementById('backgroundMusic');
+        let musicStarted = false;
+
+        // Function to start music (requires user interaction)
+        function startMusic() {
+            if (!musicStarted) {
+                music.volume = 0.3; // Set volume (0.0 to 1.0)
+                music.play().then(() => {
+                    musicStarted = true;
+                }).catch(error => {
+                    console.log('Music play failed:', error);
+                });
+            }
+        }
+
+        // Toggle music on/off
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                document.getElementById('musicToggle').innerHTML = '🔊';
+            } else {
+                music.pause();
+                document.getElementById('musicToggle').innerHTML = '🎵';
+            }
+        }
+
+        function showQuestion() {
+            document.getElementById('question').style.display = 'block';
+            document.querySelector('button').style.display = 'none';
+            document.body.style.background = "linear-gradient(to right, #667eea, #764ba2)";
+        }
+        function answer(yes) {
+            if(yes) {
+                alert("I LOVE YOU! 💍🎉 You've just made me the luckiest person alive!");
+            } else {
+                // A little joke
+                alert("I think you misclicked! Let's try that again 😉");
+                showQuestion();
+            }
+        }
+        window.onload = function() {
+            setTimeout(function() {
+                let romanticText = document.createElement('p');
+                romanticText.innerHTML = "Every day with you feels like a dream come true...";
+                romanticText.style.opacity = '0';
+                romanticText.style.transition = 'opacity 2s';
+                document.body.insertBefore(romanticText, document.querySelector('button'));
+                
+                // Fade in the text
+                setTimeout(function() {
+                    romanticText.style.opacity = '1';
+                }, 100);
+            }, 2000); // Appears 2 seconds after page loads
+        };
+                // Auto-start music on first click anywhere (if needed)
+        document.addEventListener('click', function() {
+            startMusic();
+        }, { once: true });
+    </script>
+  
+</body>
+</html>

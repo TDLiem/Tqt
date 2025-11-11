@@ -1,96 +1,174 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For My Love</title>
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- You can still have some inline styles if needed, but now most are in the CSS file -->
+    <title>A Special Message</title>
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .password-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .password-form {
+            margin: 30px 0;
+        }
+
+        input[type="password"] {
+            width: 80%;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(45deg, #ff6b88, #ff8e53);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .hint {
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .error-message {
+            color: #ff6b88;
+            margin-top: 15px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .romantic-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
     </style>
 </head>
 <body>
-     <audio id="backgroundMusic" loop>
-        <source src="khobau.mp3" type="audio/mpeg">
-        Your browser does not support audio.
-    </audio>
+    <div class="password-container">
+        <div class="romantic-icon">💖</div>
+        <h1>Welcome, Special Person</h1>
+        <p class="subtitle">This message is intended for one person only</p>
+        
+        <div class="password-form">
+            <p>To prove you're my one and only,</p>
+            <p>please enter the secret code:</p>
+            
+            <input type="password" id="passwordInput" placeholder="Enter our secret code..." 
+                   onkeypress="handleEnterKey(event)">
+            <br>
+            <button onclick="checkPassword()">Unlock My Heart 💕</button>
+            
+            <div id="errorMessage" class="error-message">
+                That's not our special code! Try again, my love.
+            </div>
+        </div>
 
-    <!-- Music Toggle Button -->
-    <button id="musicToggle" onclick="toggleMusic()">🎵</button>
-
-
-    <img id="our-photo" src="shindo.png" alt="Our Happy Photo">
-    <h1>Hello, <span id="name">[Your Lover's Name]</span>!</h1>
-    <p>From the moment I met you, my life changed forever.</p>
-    <p>You make every day brighter.</p>
-    <button onclick="showQuestion()">Click here for a very important question</button>
-
-    <div id="question">
-        <h2>Will you make me the happiest person in the world?</h2>
-        <h2>Will you marry me?</h2>
-        <button onclick="answer(true)">YES!</button>
-        <button onclick="answer(false)">... (Just kidding, it's YES!)</button>
+        <div class="hint">
+            <p>💡 Hint: Think about what makes us special</p>
+            <p>It might be where we first met, or our song...</p>
+        </div>
     </div>
 
     <script>
-        const music = document.getElementById('backgroundMusic');
-        let musicStarted = false;
+        // Our secret password - CHANGE THIS TO YOUR SPECIAL WORD/NUMBER!
+        const correctPassword = "trang"; // You can change this to anything meaningful
 
-        // Function to start music (requires user interaction)
-        function startMusic() {
-            if (!musicStarted) {
-                music.volume = 0.3; // Set volume (0.0 to 1.0)
-                music.play().then(() => {
-                    musicStarted = true;
-                }).catch(error => {
-                    console.log('Music play failed:', error);
-                });
-            }
-        }
+        function checkPassword() {
+            const userInput = document.getElementById('passwordInput').value.toLowerCase().trim();
+            const errorMessage = document.getElementById('errorMessage');
 
-        // Toggle music on/off
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                document.getElementById('musicToggle').innerHTML = '🔊';
+            if (userInput === correctPassword) {
+                // Password correct - redirect to the main proposal page
+                window.location.href = "proposal.html";
             } else {
-                music.pause();
-                document.getElementById('musicToggle').innerHTML = '🎵';
-            }
-        }
-
-        function showQuestion() {
-            document.getElementById('question').style.display = 'block';
-            document.querySelector('button').style.display = 'none';
-            document.body.style.background = "linear-gradient(to right, #667eea, #764ba2)";
-        }
-        function answer(yes) {
-            if(yes) {
-                alert("I LOVE YOU! 💍🎉 You've just made me the luckiest person alive!");
-            } else {
-                // A little joke
-                alert("I think you misclicked! Let's try that again 😉");
-                showQuestion();
-            }
-        }
-        window.onload = function() {
-            setTimeout(function() {
-                let romanticText = document.createElement('p');
-                romanticText.innerHTML = "Every day with you feels like a dream come true...";
-                romanticText.style.opacity = '0';
-                romanticText.style.transition = 'opacity 2s';
-                document.body.insertBefore(romanticText, document.querySelector('button'));
+                // Password wrong - show error
+                errorMessage.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
                 
-                // Fade in the text
-                setTimeout(function() {
-                    romanticText.style.opacity = '1';
-                }, 100);
-            }, 2000); // Appears 2 seconds after page loads
+                // Shake animation for wrong password
+                document.querySelector('.password-container').style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    document.querySelector('.password-container').style.animation = '';
+                }, 500);
+            }
+        }
+
+        // Allow pressing Enter to submit
+        function handleEnterKey(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        }
+
+        // Add shake animation for wrong passwords
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Focus on input when page loads
+        window.onload = function() {
+            document.getElementById('passwordInput').focus();
         };
-                // Auto-start music on first click anywhere (if needed)
-        document.addEventListener('click', function() {
-            startMusic();
-        }, { once: true });
     </script>
-  
 </body>
 </html>
