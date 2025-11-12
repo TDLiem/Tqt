@@ -1,9 +1,12 @@
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
-    padding-top: 20%;
+    padding-top: 5%;
     background: linear-gradient(to right, #ffafbd, #ffc3a0);
     color: #5d3a3a;
+    justify-content: center; /* Centers content vertically */
+    height: 100vh;
+    /* overflow: hidden; */
 }
 #question {
     font-size: 24px;
@@ -86,9 +89,13 @@ button {
 
 .page-indicator {
     position: fixed;
-    top: 30px;
-    width: 100%;
-    text-align: center;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
 }
 
 .dot {
@@ -105,7 +112,77 @@ button {
     background: white;
 }
 
+.clock-container {
+    text-align: center;
+}
+
+.timer {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #ff6b88;
+    margin: 15px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.romantic-gallery {
+    padding: 20px;
+    text-align: center;
+}
+
+.film-scroll {
+    height: 250px;
+    width: 300px;
+    margin: 30px auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.film-strip {
+    display: flex;
+    flex-direction: column;
+    animation: scrollUp 20s linear infinite;
+}
+
+.film-frame {
+    width: 250px;
+    height: 200px;
+    margin: 10px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    border: 3px solid white;
+}
+
+.film-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes scrollUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(calc(-100% + 250px)); }
+}
+
+/* Pause animation on hover */
+.film-scroll:hover .film-strip {
+    animation-play-state: paused;
+}
+
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--rotation, 0deg));
+    }
+}
+

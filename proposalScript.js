@@ -6,6 +6,23 @@ let startY = 0;
 const pages = document.querySelectorAll('.page');
 const dots = document.querySelectorAll('.dot');
 
+const firstMessageDate = new Date('2023-01-01 20:00');
+
+function updateLoveTimer() {
+    const now = new Date();
+    const diff = now - firstMessageDate;
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    
+    document.getElementById('loveTimer').innerHTML = 
+        `${days} days ${hours} hours ${minutes} minutes`;
+}
+
+// Update timer immediately and every minute
+updateLoveTimer();
+setInterval(updateLoveTimer, 60000);
 
 document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchend', handleTouchEnd, false);
