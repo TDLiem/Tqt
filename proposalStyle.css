@@ -4,7 +4,8 @@ body {
     padding-top: 5%;
     background: linear-gradient(to right, #ffafbd, #ffc3a0);
     color: #5d3a3a;
-    justify-content: center; /* Centers content vertically */
+    justify-content: center;
+    /* Centers content vertically */
     height: 100vh;
     /* width: 100vw; */
     /* overflow: hidden; */
@@ -39,8 +40,10 @@ body {
 #question {
     font-size: 24px;
     margin-bottom: 30px;
-    display: none; /* Hidden at first */
+    display: none;
+    /* Hidden at first */
 }
+
 button {
     background-color: #ff6b88;
     color: white;
@@ -51,14 +54,15 @@ button {
     cursor: pointer;
     border-radius: 12px;
 }
+
 #our-photo {
-    width: 200px;          
-    height: 50vh;        
-    border-radius: 50%;     
-    object-fit: cover;      
-    border: 5px solid white; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
-    margin: 20px auto;     
+    width: 200px;
+    height: 50vh;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
 }
 
 .love-photo {
@@ -66,14 +70,22 @@ button {
     max-width: 400px;
     border-radius: 20px;
     margin-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.zalo-photo {
+    width: 80%;
+    max-width: 400px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 #musicToggle {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255, 255, 255, 0.8);
     color: #333;
     border: none;
     border-radius: 50%;
@@ -88,7 +100,7 @@ button {
     bottom: 30px;
     width: 100%;
     text-align: center;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     animation: bounce 2s infinite;
 }
 
@@ -108,7 +120,7 @@ button {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255, 255, 255, 0.5);
     margin: 0 5px;
     transition: background 0.3s ease;
 }
@@ -117,67 +129,161 @@ button {
     background: white;
 }
 
-.clock-container {
-    text-align: center;
-}
-
 .timer {
     font-size: 1.8em;
     font-weight: bold;
     color: #ff6b88;
     margin: 15px 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.romantic-gallery {
-    padding: 20px;
+.main-title {
+    font-size: 3em;
+    color: #6b90ff8c;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
     text-align: center;
+    opacity: 1;
+    transform: translateY(-30px);
+    transition: all 1s ease;
+    /* transition-delay: calc(var(--delay, 0) * 0.5s); */
 }
 
-.film-scroll {
-    height: 60vh;
-    width: 80vw;
-    margin: 30px auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
+.message {
+    font-size: 2em;
 }
 
-.film-strip {
+.zalo-photo, .message, .timer, .clock, .main-title, .grid-3cols {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.page.active .zalo-photo,
+.page.active .message,
+.page.active .timer,
+.page.active .clock,
+.page.active .main-title,
+.page.active .grid-3cols {
+    animation: gentleFade 2s ease forwards;
+    animation-delay: calc(var(--delay, 0) * 1s);
+}
+
+@keyframes gentleFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+/* 2-column layout */
+.grid-2cols {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* 3-column layout */
+.grid-3cols {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Custom ratio (left sidebar) */
+.grid-sidebar {
+    grid-template-columns: 1fr 2fr;
+}
+
+/* Custom ratio (right sidebar) */
+.grid-sidebar-right {
+    grid-template-columns: 2fr 1fr;
+}
+
+.photo-album {
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    animation: scrollUp 20s linear infinite;
 }
 
-.film-frame {
-    width: 250px;
-    height: 200px;
-    margin: 10px auto;
+.main-photo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.main-photo img {
+    max-height: 60vh;
+    max-width: 90%;
+    object-fit: contain;
     border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    border: 3px solid white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.film-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.photo-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+    flex-wrap: wrap;
 }
+
+.photo-thumbnails img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.photo-thumbnails img.active,
+.photo-thumbnails img:hover {
+    border-color: #ff6b88;
+    transform: scale(1.1);
+}
+
+.album-message {
+    text-align: center;
+    padding: 15px;
+    font-style: italic;
+    margin: 0;
+}
+
 
 @keyframes scrollUp {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(calc(-100% + 250px)); }
-}
+    0% {
+        transform: translateY(0);
+    }
 
-/* Pause animation on hover */
-.film-scroll:hover .film-strip {
-    animation-play-state: paused;
+    100% {
+        transform: translateY(calc(-50% -25px));
+    }
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 @keyframes floatIn {
@@ -185,9 +291,9 @@ button {
         opacity: 0;
         transform: translateY(30px) rotate(0deg);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) rotate(var(--rotation, 0deg));
     }
 }
-

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>For My Love</title>
     <link rel="stylesheet" href="proposalStyle.css">
-        <!-- Link to a heart emoji as favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
+    <!-- Link to a heart emoji as favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
     <!-- You can still have some inline styles if needed, but now most are in the CSS file -->
     <style>
     </style>
@@ -17,9 +19,10 @@
     </script> -->
 
 </head>
+
 <body>
     <audio id="backgroundMusic" loop>
-    <source src="khobau.mp3" type="audio/mpeg">
+        <source src="khobau.mp3" type="audio/mpeg">
         Your browser does not support audio.
     </audio>
     <!-- Music Toggle Button -->
@@ -27,37 +30,56 @@
 
     <div class="container">
         <section class="page active">
-            <p class="message">It has been</p>
-            <div id="loveTimer" class="timer"></div>
-            <p class="message">since my first message with you</p>
-            <p class="message">The day I met you, everything changed</p>
+            <h1 class="main-title"> To My Forever Love</h1>
+            <div class="grid-container grid-2cols">
+                <div>
+                    <img src="pics/zalo0.jpg" class="zalo-photo" style="--delay: 2">
+                </div>
+                <div>
+                    <div id="loveTimer" class="timer" style="--delay: 1"></div>
+                    <p class="message" style="--delay: 2">la khoang thoi gian</p>
+                </div>
+            </div>
+            <div>
+                <p class="message" style="--delay:4 ">Ke tu do, minh da noi chuyen</p>
+            </div>
+            <div class="grid-container grid-3cols" style="--delay: 6">
+                <div>
+                    <img src="pics/zalo1.jpg" class="zalo-photo">
+                </div>
+                <div>
+                    <img src="pics/zalo2.jpg" class="zalo-photo">
+                </div>
+                <div>
+                    <img src="pics/zalo3.jpg" class="zalo-photo">
+                </div>
+            </div>
         </section>
-        
+
         <section class="page">
             <img src="pics/aodaixanh.jpg" class="love-photo">
             <p class="message">Every moment with you feels like magic</p>
         </section>
-        
-        <section class="page">
-            <!-- <img src="pics/aodaixanhnhat.jpg" class="love-photo"> -->
-            <div class="romantic-gallery">
-                
-                <p class="message">You're my favorite hello and hardest goodbye</p>
 
-                <div class="film-scroll">
-                    <div class="film-strip">
-                        <div class="film-frame"><img src="pics/aodaido.jpg" alt="Memory 1"></div>
-                        <div class="film-frame"><img src="pics/aodaihong1.jpg" alt="Memory 2"></div>
-                        <div class="film-frame"><img src="pics/aodaixanhnhat.jpg" alt="Memory 3"></div>
-                        <div class="film-frame"><img src="pics/dim1.jpg" alt="Memory 4"></div>
-                        <div class="film-frame"><img src="pics/longbien.jpg" alt="Memory 5"></div>
-                    </div>
+        <section class="page">
+
+            <div class="photo-album">
+                <div class="main-photo">
+                    <img id="currentPhoto" src="pics/aodaido.jpg" alt="Our memory">
+                </div>
+                <div class="photo-thumbnails">
+                    <img src="pics/aodaido.jpg" alt="Memory 1" onclick="showPhoto(0)" class="thumb active">
+                    <img src="pics/aodaihong1.jpg" alt="Memory 2" onclick="showPhoto(1)" class="thumb">
+                    <img src="pics/aodaixanhnhat.jpg" alt="Memory 3" onclick="showPhoto(2)" class="thumb">
+                    <img src="pics/dim1.jpg" alt="Memory 4" onclick="showPhoto(3)" class="thumb">
+                    <img src="pics/longbien.jpg" alt="Memory 5" onclick="showPhoto(4)" class="thumb">
                 </div>
 
+                <p class="album-message">Every moment with you is a beautiful memory I'll cherish forever</p>
             </div>
 
         </section>
-        
+
         <section class="page">
             <img id="our-photo" src="pics/vayxanh.jpg" alt="Our Happy Photo">
             <h1>Hello, <span id="name">[Your Lover's Name]</span>!</h1>
@@ -82,7 +104,8 @@
         <span class="dot"></span>
     </div>
 
-    <script src="proposalScript.js"></script>   
-  
+    <script src="proposalScript.js"></script>
+
 </body>
+
 </html>
