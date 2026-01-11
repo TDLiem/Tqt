@@ -11,6 +11,21 @@ body {
     /* overflow: hidden; */
 }
 
+html, body {
+    /* phone touch issue */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+img {
+    /* image overflow */
+    max-width: 100%;
+    height: auto;
+}
+
 .container {
     height: 100vh;
     overflow: hidden;
@@ -85,19 +100,19 @@ button {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: rgba(255, 255, 255, 0.8);
+    background: none;
     color: #333;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     font-size: 18px;
 }
 
 
 .swipe-indicator {
     position: fixed;
-    bottom: 30px;
+    bottom: 5px;
     width: 100%;
     text-align: center;
     color: rgba(255, 255, 255, 0.8);
@@ -106,7 +121,7 @@ button {
 
 .page-indicator {
     position: fixed;
-    right: 20px;
+    left: 5px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -140,7 +155,7 @@ button {
 }
 
 .main-title {
-    font-size: 3em;
+    font-size: 2em;
     color: #6b90ff8c;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
@@ -152,10 +167,11 @@ button {
 }
 
 .message {
-    font-size: 2em;
+    font-size: 1em;
+    font-family: 'Dancing Script', cursive;
 }
 
-.zalo-photo, .message, .timer, .clock, .main-title, .grid-3cols {
+.zalo-photo, .message, .timer, .main-title, .grid-3cols {
     opacity: 0;
     transform: translateY(20px);
 }
@@ -163,12 +179,62 @@ button {
 .page.active .zalo-photo,
 .page.active .message,
 .page.active .timer,
-.page.active .clock,
 .page.active .main-title,
 .page.active .grid-3cols {
     animation: gentleFade 2s ease forwards;
     animation-delay: calc(var(--delay, 0) * 1s);
 }
+
+#loveReveal {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+#loveReveal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.letter {
+    background: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 90%;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4em;
+    color: #5d3a3a;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.letter p {
+    opacity: 0;
+    animation: fadeLine 1s ease forwards;
+}
+
+.letter p:nth-child(1) { animation-delay: 0.5s; }
+.letter p:nth-child(2) { animation-delay: 1.5s; }
+.letter p:nth-child(3) { animation-delay: 2.5s; }
+.letter p:nth-child(4) { animation-delay: 3.5s; }
+.letter p:nth-child(5) { animation-delay: 4.5s; }
+.letter .signature {
+    animation-delay: 5.5s;
+    font-size: 1.2em;
+}
+
+@keyframes fadeLine {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 
 @keyframes gentleFade {
     from {
@@ -261,6 +327,84 @@ button {
     padding: 15px;
     font-style: italic;
     margin: 0;
+}
+
+.application-card {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    width: 90%;
+    max-width: 400px;
+    text-align: left;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    font-size: 0.95em;
+}
+
+.application-card p {
+    margin: 8px 0;
+}
+
+.application-card,
+#applicationPage .message {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.page.active .application-card,
+.page.active #applicationPage .message {
+    animation: gentleFade 1.5s ease forwards;
+    animation-delay: 0.5s;
+}
+
+#loveReveal {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+#loveReveal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.letter {
+    background: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 90%;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4em;
+    color: #5d3a3a;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.letter p {
+    opacity: 0;
+    animation: fadeLine 1s ease forwards;
+}
+
+.letter p:nth-child(1) { animation-delay: 0.5s; }
+.letter p:nth-child(2) { animation-delay: 1.5s; }
+.letter p:nth-child(3) { animation-delay: 2.5s; }
+.letter p:nth-child(4) { animation-delay: 3.5s; }
+.letter p:nth-child(5) { animation-delay: 4.5s; }
+.letter .signature {
+    animation-delay: 5.5s;
+    font-size: 1.2em;
+}
+
+@keyframes fadeLine {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 

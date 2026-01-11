@@ -2,8 +2,11 @@
 <html>
 
 <head>
-    <title>For My Love</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="proposalStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- Link to a heart emoji as favicon -->
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
@@ -18,6 +21,7 @@
         }
     </script> -->
 
+    <title>For My Love</title>
 </head>
 
 <body>
@@ -37,13 +41,13 @@
                 </div>
                 <div>
                     <div id="loveTimer" class="timer" style="--delay: 1"></div>
-                    <p class="message" style="--delay: 2">la khoang thoi gian</p>
+                    <p class="message" style="--delay: 2">Là quãng thời gian mà anh đã quen em kể tin nhắn đầu tiên.</p>
                 </div>
             </div>
             <div>
-                <p class="message" style="--delay:4 ">Ke tu do, minh da noi chuyen</p>
+                <p class="message" style="--delay:4 ">Mình đã nói chuyện khá nhiều</p>
             </div>
-            <div class="grid-container grid-3cols" style="--delay: 6">
+            <div class="grid-container grid-3cols" style="--delay: 5">
                 <div>
                     <img src="pics/zalo1.jpg" class="zalo-photo">
                 </div>
@@ -80,23 +84,45 @@
 
         </section>
 
-        <section class="page">
-            <img id="our-photo" src="pics/vayxanh.jpg" alt="Our Happy Photo">
-            <h1>Hello, <span id="name">[Your Lover's Name]</span>!</h1>
-            <p>From the moment I met you, my life changed forever.</p>
-            <p>You make every day brighter.</p>
-            <button onclick="showQuestion()">Click here for a very important question</button>
+
+        <section class="page" id="applicationPage">
+            <h1 class="main-title">💌 Lover Application</h1>
+
+            <div class="application-card">
+                <p><strong>Applicant:</strong> Me</p>
+                <p><strong>Applying for:</strong> Your heart</p>
+                <p><strong>Reason:</strong> I fell in love with you without realizing it</p>
+                <p><strong>Commitment:</strong> 100% honesty, loyalty, and care</p>
+                <p><strong>Duration:</strong> Forever, if approved</p>
+            </div>
+
+            <p class="message">
+                I may not be perfect,
+                but every heartbeat I have is already yours.
+            </p>
+
+            <button id="continueBtn" onclick="showQuestion()">Continue</button>
 
             <div id="question">
-                <h2>Will you make me the happiest person in the world?</h2>
-                <h2>Will you marry me?</h2>
-                <button onclick="answer(true)">YES!</button>
-                <button onclick="answer(false)">... (Just kidding, it's YES!)</button>
+                <h2>Will you accept this application and become my lover?</h2>
+                <button onclick="answer(true)">YES 💖</button>
+                <button onclick="answer(false)">No (reconsider 😉)</button>
             </div>
         </section>
     </div>
 
-    <div class="swipe-indicator">↑ Swipe up for previous • Swipe down for next ↑</div>
+    <div id="loveReveal">
+        <div class="letter">
+            <p>From this moment on,</p>
+            <p>my heart officially belongs to you.</p>
+            <p>I promise to love you,</p>
+            <p>choose you,</p>
+            <p>and walk with you — always.</p>
+            <p class="signature">— Yours ❤️</p>
+        </div>
+    </div>
+
+    <div class="swipe-indicator">↑ Vuốt để chuyển trang ↑</div>
     <div class="page-indicator">
         <span class="dot active"></span>
         <span class="dot"></span>
