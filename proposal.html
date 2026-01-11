@@ -25,12 +25,10 @@
 </head>
 
 <body>
-    <audio id="backgroundMusic" loop>
+    <audio id="backgroundMusic" loop autoplay muted playsinline>
         <source src="khobau.mp3" type="audio/mpeg">
-        Your browser does not support audio.
     </audio>
-    <!-- Music Toggle Button -->
-    <button id="musicToggle" onclick="toggleMusic()">🎵</button>
+
 
     <div class="container">
         <section class="page active">
@@ -66,7 +64,6 @@
         </section>
 
         <section class="page">
-
             <div class="photo-album">
                 <div class="main-photo">
                     <img id="currentPhoto" src="pics/aodaido.jpg" alt="Our memory">
@@ -81,9 +78,7 @@
 
                 <p class="album-message">Every moment with you is a beautiful memory I'll cherish forever</p>
             </div>
-
         </section>
-
 
         <section class="page" id="applicationPage">
             <h1 class="main-title">💌 Lover Application</h1>

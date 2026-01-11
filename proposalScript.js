@@ -1,3 +1,12 @@
+function setViewportHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+setViewportHeight();
+window.addEventListener('resize', setViewportHeight);
+
+
 const music = document.getElementById('backgroundMusic');
 let musicStarted = false;
 
@@ -11,6 +20,7 @@ const photos = ['pics/aodaido.jpg', 'pics/aodaihong1.jpg', 'pics/aodaixanhnhat.j
 
 const firstMessageDate = new Date('2025-07-13 21:43');
 
+
 function updateLoveTimer() {
     const now = new Date();
     const diff = now - firstMessageDate;
@@ -22,6 +32,7 @@ function updateLoveTimer() {
     document.getElementById('loveTimer').innerHTML =
         `${days} ngày ${hours} giờ ${minutes} phút`;
 }
+
 
 // Update timer immediately and every minute
 updateLoveTimer();
@@ -101,14 +112,7 @@ function showPhoto(index) {
         document.querySelectorAll('.thumb').forEach((thumb, i) => {
             thumb.classList.toggle('active', i === index);
         });
-    }, 250); // Match CSS transition time
-    //     currentIndex = index;
-    // document.getElementById('currentPhoto').src = photos[index];
-
-    // // Update active thumbnail
-    // document.querySelectorAll('.thumb').forEach((thumb, i) => {
-    //     thumb.classList.toggle('active', i === index);
-    // });
+    }, 250); 
 }
 
 // Keyboard support for testing
@@ -120,28 +124,7 @@ document.addEventListener('keydown', (evt) => {
     }
 });
 
-// Function to start music (requires user interaction)
-function startMusic() {
-    if (!musicStarted) {
-        music.volume = 0.3; // Set volume (0.0 to 1.0)
-        music.play().then(() => {
-            musicStarted = true;
-        }).catch(error => {
-            console.log('Music play failed:', error);
-        });
-    }
-}
 
-// Toggle music on/off
-function toggleMusic() {
-    if (music.paused) {
-        music.play();
-        document.getElementById('musicToggle').innerHTML = '🔊';
-    } else {
-        music.pause();
-        document.getElementById('musicToggle').innerHTML = '🎵';
-    }
-}
 
 function showQuestion() {
     const question = document.getElementById('question');
@@ -171,7 +154,26 @@ function answer(yes) {
     }
 }
 
-// Auto-start music on first click anywhere (if needed)
-document.addEventListener('click', function () {
-    startMusic();
-}, { once: true });
+
+//music siliently on load
+document.addEventListener('DOMContentLoaded', () => {
+    music.volume = 0;
+    music.play().catch(() => {});
+});
+
+
+function fadeInMusic() {
+    music.muted = false;
+
+    let vol = 0;
+    music.volume = vol;
+
+    const fade = setInterval(() => {
+        vol += 0.05;
+        music.volume = Math.min(vol, 0.3);
+        if (vol >= 0.3) clearInterval(fade);
+    }, 200);
+}
+
+document.addEventListener('touchstart', fadeInMusic, { once: true });
+document.addEventListener('click', fadeInMusic, { once: true });

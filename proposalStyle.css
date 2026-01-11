@@ -6,7 +6,7 @@ body {
     color: #5d3a3a;
     justify-content: center;
     /* Centers content vertically */
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     /* width: 100vw; */
     /* overflow: hidden; */
 }
@@ -18,6 +18,7 @@ html, body {
     height: 100%;
     overflow: hidden;
     touch-action: manipulation;
+    overscroll-behavior: none;
 }
 
 img {
@@ -27,13 +28,13 @@ img {
 }
 
 .container {
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     overflow: hidden;
     position: relative;
 }
 
 .page {
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,11 +45,17 @@ img {
     width: 100%;
     top: 0;
     left: 0;
+    opacity: 0; 
     transition: transform 0.8s ease;
 }
 
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .page:not(.active) {
-    transform: translateY(100vh);
+    transform: translateY(calc(var(--vh) * 100));
 }
 
 
@@ -72,7 +79,7 @@ button {
 
 #our-photo {
     width: 200px;
-    height: 50vh;
+    height:  calc(var(--vh) * 50)vh;
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid white;
@@ -276,7 +283,7 @@ button {
 }
 
 .photo-album {
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     display: flex;
     flex-direction: column;
 }
@@ -290,7 +297,7 @@ button {
 }
 
 .main-photo img {
-    max-height: 60vh;
+    max-height:  calc(var(--vh) * 60);
     max-width: 90%;
     object-fit: contain;
     border-radius: 15px;
