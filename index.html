@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>A Special Message</title>
+    <!-- <script src="proposalScript.js"></script> -->
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -9,12 +11,12 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             margin: 0;
-            padding: 0;
+            padding-bottom: 30px;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: flex;
         }
 
         .password-container {
@@ -23,18 +25,18 @@
             border-radius: 20px;
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
+            max-width: 90%;
             margin: 20px;
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: 48px;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .subtitle {
-            font-size: 1.2em;
+            font-size: 36px;
             margin-bottom: 30px;
             opacity: 0.9;
         }
@@ -44,9 +46,9 @@
         }
 
         input[type="password"] {
-            width: 80%;
+            width: 50%;
             padding: 15px;
-            font-size: 18px;
+            font-size: 30px;
             border: none;
             border-radius: 50px;
             text-align: center;
@@ -60,7 +62,7 @@
             color: white;
             border: none;
             padding: 15px 40px;
-            font-size: 18px;
+            font-size: 25px;
             border-radius: 50px;
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -69,12 +71,6 @@
 
         button:hover {
             transform: scale(1.05);
-        }
-
-        .hint {
-            margin-top: 20px;
-            font-style: italic;
-            opacity: 0.7;
         }
 
         .error-message {
@@ -90,35 +86,42 @@
             animation: float 3s ease-in-out infinite;
         }
 
+        .tiger-photo {
+            width: 70%;
+            height: auto;
+        }
+
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
-<body>
-    <div class="password-container">
-        <div class="romantic-icon">💖</div>
-        <h1>Welcome, Special Person</h1>
-        <p class="subtitle">This message is intended for one person only</p>
-        
-        <div class="password-form">
-            <p>To prove you're my one and only,</p>
-            <p>please enter the secret code:</p>
-            
-            <input type="password" id="passwordInput" placeholder="Enter our secret code..." 
-                   onkeypress="handleEnterKey(event)">
-            <br>
-            <button onclick="checkPassword()">Unlock My Heart 💕</button>
-            
-            <div id="errorMessage" class="error-message">
-                That's not our special code! Try again, my love.
-            </div>
-        </div>
 
-        <div class="hint">
-            <p>💡 Hint: Think about what makes us special</p>
-            <p>It might be where we first met, or our song...</p>
+<body>
+    <div class="tiger">
+        <img src="pics/conho.png" class="tiger-photo">
+    </div>
+    <div class="password-container">
+        <h1>Trang web này chỉ dành cho người đặc biệt trong trái tim tôi</h1>
+        <p class="subtitle">Xin hãy nhập mật khẩu</p>
+
+        <div class="password-form">
+            <input type="password" id="passwordInput" placeholder="Gõ vào đây..."
+                onkeypress="handleEnterKey(event)">
+            <br>
+            <button onclick="checkPassword()">Tiếp tục 💕</button>
+
+            <div id="errorMessage" class="error-message">
+                ❌ Mật khẩu không đúng. Hãy thử lại! ❌
+            </div>
         </div>
     </div>
 
@@ -132,14 +135,14 @@
 
             if (userInput === correctPassword) {
                 // Password correct - redirect to the main proposal page
-                    const token = Date.now();
-                    window.location.href = `proposal.html?token=${token}&auth=true`;
+                const token = Date.now();
+                window.location.href = `proposal.html?token=${token}&auth=true`;
             } else {
                 // Password wrong - show error
                 errorMessage.style.display = 'block';
                 document.getElementById('passwordInput').value = '';
                 document.getElementById('passwordInput').focus();
-                
+
                 // Shake animation for wrong password
                 document.querySelector('.password-container').style.animation = 'shake 0.5s';
                 setTimeout(() => {
@@ -167,9 +170,10 @@
         document.head.appendChild(style);
 
         // Focus on input when page loads
-        window.onload = function() {
+        window.onload = function () {
             document.getElementById('passwordInput').focus();
         };
     </script>
 </body>
+
 </html>

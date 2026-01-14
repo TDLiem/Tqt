@@ -11,9 +11,9 @@ body, .page {
 
 body {
     font-family: 'Arial', sans-serif;
-    text-align: center;
+    text-align: left;
     padding-top: 5%;
-    background: linear-gradient(to right, #ffafbd, #ffc3a0);
+    background: linear-gradient(to right, #fbafbb, #ffdbc6);
     color: #5d3a3a;
     justify-content: center;
     /* Centers content vertically */
@@ -53,8 +53,8 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding: 5px;
+    align-items: center;
     text-align: center;
     position: absolute;
     width: 100%;
@@ -62,6 +62,13 @@ img {
     left: 0;
     opacity: 0; 
     transition: transform 0.8s ease;
+}
+
+.page.intro {
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 30px;
+    justify-content: flex-start;
 }
 
 .page.active {
@@ -91,6 +98,7 @@ button {
     cursor: pointer;
     border-radius: 12px;
 }
+
 
 #our-photo {
     width: 200px;
@@ -169,7 +177,7 @@ button {
 .timer {
     font-size: 1.8em;
     font-weight: bold;
-    color: #ff6b88;
+    color: #387dbe84;
     margin: 15px 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     opacity: 1;
@@ -181,7 +189,6 @@ button {
     color: #6b90ff8c;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
-    text-align: center;
     opacity: 1;
     transform: translateY(-30px);
     transition: all 1s ease;
@@ -189,7 +196,7 @@ button {
 }
 
 .message {
-    font-size: 1em;
+    font-size: 1.2em;
     font-family: 'Dancing Script', cursive;
 }
 
@@ -274,7 +281,7 @@ button {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 5px;
     width: 100%;
-    padding: 10px;
+    padding: 0;
     margin: 0 auto;
 }
 
@@ -322,12 +329,33 @@ button {
   box-shadow: none;   /* optional: remove extra shadow */
 }
 
+.slide-up {
+  transform: translateY(200px);
+  transition: transform 1.2s ease;
+  opacity: 0;
+}
+
+.slide-down {
+  transform: translateY(-200px);
+  transition: transform 1.2s ease;
+  opacity: 0;
+}
+.page.active.romantic-page {
+    transition:none;
+}
+/* Animate when page becomes active */
+.page.active .slide-up,
+.page.active .slide-down {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 /* Romantic page bottom overlay (stylish + safe-area aware) */
 .romantic-overlay {
   position: absolute;
   left: 50%;
+  bottom: 10%;
   transform: translateX(-50%) translateY(10px);
-  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
   background: linear-gradient(135deg, rgba(255,255,255,0.78), rgba(255,240,245,0.66));
   backdrop-filter: blur(8px) saturate(120%);
   -webkit-backdrop-filter: blur(8px) saturate(120%);
@@ -351,17 +379,11 @@ button {
   transition-delay: 0.35s;
 }
 
-.ov-heart {
-  font-size: 1.2rem;
-  color: #ff6b88;
-  transform: translateY(1px);
-}
-
 .ov-keyword {
   margin: 0;
   font-family: 'Dancing Script', cursive;
   color: #ff6b88;
-  font-size: 1.15rem;
+  font-size: 2rem;
   line-height: 1;
 }
 
@@ -369,9 +391,96 @@ button {
   margin: 0;
   font-family: 'Dancing Script', cursive;
   color: #6b4e4e;
-  font-size: 0.97rem;
+  font-size: 1.5rem;
   opacity: 0.95;
 }
+
+/* ===== Quad Image Page ===== */
+
+.quad-page.active {
+    transition:none;
+}
+
+.quad-page {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: none;
+}
+
+.quad-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.quad-img {
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.9);
+    /* Quad image entrance from 4 corners */
+    transform: translate(0, 0);
+    transition: transform 1.2s cubic-bezier(.2,.9,.2,1);
+}
+
+
+/* Initial off-screen positions */
+.from-tl { transform: translate(-100px, -100px); }
+.from-tr { transform: translate( 100px, -100px); }
+.from-bl { transform: translate(-100px,  100px); }
+.from-br { transform: translate( 100px,  100px); }
+/* Animate when page becomes active */
+.page.active .quad-img {
+    transform: translate(0, 0);
+}
+
+
+/* Center elegant overlay */
+.quad-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(12px);
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.78),
+        rgba(255,240,245,0.68)
+    );
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    padding: 28px 34px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    max-width: 85%;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(.2,.9,.2,1);
+}
+
+/* Animate in when active */
+.page.active .quad-overlay {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+    transition-delay: 0.35s;
+}
+
+.quad-keyword {
+    margin: 0 0 10px 0;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #ff6b88;
+}
+
+.quad-text {
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #6b4e4e;
+}
+
 
 .application-card {
     background: rgba(255, 255, 255, 0.85);
@@ -450,6 +559,8 @@ button {
 
 .nice-page {
     background: url("pics/aodaihong1.jpg") center / cover no-repeat;
+    justify-content: flex-start;    
+    padding-top:10%;
 }
 
 .nice-overlay {
@@ -469,6 +580,7 @@ button {
     font-size: 1.05em;
     line-height: 1.6;
 }
+
 
 
 @keyframes fadeLine {
