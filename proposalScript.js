@@ -84,21 +84,6 @@ document.addEventListener('keydown', (evt) => {
     }
 });
 
-
-function showQuestion() {
-    const question = document.getElementById('question');
-    const continueBtn = document.getElementById('continueBtn');
-
-    question.style.display = 'block';
-
-    if (continueBtn) {
-        continueBtn.style.display = 'none';
-    }
-
-    document.body.style.background =
-        "linear-gradient(to right, #667eea, #764ba2)";
-}
-
 function answer(yes) {
     if (yes) {
         // Hide question
