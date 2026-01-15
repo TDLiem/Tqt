@@ -109,7 +109,6 @@ function answer(yes) {
         reveal.classList.add('show');
     } else {
         alert("Application returned for reconsideration 😉\nPlease review again.");
-        showQuestion();
     }
 }
 
