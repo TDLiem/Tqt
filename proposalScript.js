@@ -92,6 +92,8 @@ function answer(yes) {
         // Show love reveal
         const reveal = document.getElementById('loveReveal');
         reveal.classList.add('show');
+
+        startHeartAnimation(); // 💖 start hearts
     } else {
         showNoAlert();
     }
@@ -104,6 +106,30 @@ function showNoAlert() {
 function closeNoAlert() {
     document.getElementById('noAlert').classList.remove('show');
 }
+
+function startHeartAnimation() {
+    const container = document.getElementById('hearts-container');
+    const heartEmojis = ['💖', '💗', '💘', '❤️', '💕'];
+
+    const interval = setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+        const size = Math.random() * 16 + 16;
+        heart.style.fontSize = `${size}px`;
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDuration = `${Math.random() * 3 + 4}s`;
+
+        container.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 7000);
+    }, 250);
+
+    // Stop after 12 seconds (romantic but not chaotic)
+    setTimeout(() => clearInterval(interval), 12000);
+}
+
 
 //music siliently on load
 document.addEventListener('DOMContentLoaded', () => {
