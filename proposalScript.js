@@ -93,10 +93,17 @@ function answer(yes) {
         const reveal = document.getElementById('loveReveal');
         reveal.classList.add('show');
     } else {
-        alert("Application returned for reconsideration 😉\nPlease review again.");
+        showNoAlert();
     }
 }
 
+function showNoAlert() {
+    document.getElementById('noAlert').classList.add('show');
+}
+
+function closeNoAlert() {
+    document.getElementById('noAlert').classList.remove('show');
+}
 
 //music siliently on load
 document.addEventListener('DOMContentLoaded', () => {
